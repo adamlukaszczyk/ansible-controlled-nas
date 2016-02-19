@@ -1,11 +1,11 @@
 # ansible-controlled-nas
 
-Ansible inside VirtualBox to make magic even on Windows.
+Ansible and ARM virtualization for testing environment insite one VirtualBox
 
 ## Setup steps
 
-1. Emulator of the NAS will use libvirt (https://github.com/pradels/vagrant-libvirt). Make sure you have Ruby on your host.
-> `$ vagrant plugin install vagrant-libvirt`
+0. Clone this project; Make sure you have vagrant installed on your host.
 
-2. First time vagrant run:
+1. First time vagrant run:
 > `$ vagrant up`
+
