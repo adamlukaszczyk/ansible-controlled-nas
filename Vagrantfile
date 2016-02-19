@@ -67,5 +67,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     sudo apt-get install -y ansible
+    sudo apt-get install -y vagrant
+	sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
+	vagrant plugin install vagrant-libvirt
   SHELL
 end
