@@ -1,6 +1,10 @@
 # ansible-controlled-nas
 
 Ansible and ARM virtualization for testing environment insite one VirtualBox
+https://github.com/pradels/vagrant-libvirt
+
+Debian ARM images:
+https://people.debian.org/~aurel32/qemu/armel/
 
 ## Setup steps
 
