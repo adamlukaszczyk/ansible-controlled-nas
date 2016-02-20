@@ -1,0 +1,5 @@
+# Directory for virtual machines binary boxes
+# Boxes are generated during vagrant's provisioning
+# GIT ignore all files here
+
+*

@@ -65,10 +65,14 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
+    #sudo apt-get update
     sudo apt-get install -y ansible
     sudo apt-get install -y vagrant
 	sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
-	vagrant plugin install vagrant-libvirt
+	#sudo apt-get install -y qemu-kvm libvirt-bin bridge-utils virt-manager
+	#vagrant plugin install vagrant-libvirt
+	cd /vagrant/arm-debian; sudo qemu-system-arm -M versatilepb -kernel vmlinuz-3.2.0-4-versatile -initrd initrd.img-3.2.0-4-versatile -hda debian_wheezy_armel_standard.qcow2 -append "root=/dev/sda1" -daemonize -display none -redir tcp:5555::22
   SHELL
 end
+
+#  ssh -p5555 root@127.0.0.1
