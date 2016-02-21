@@ -1,20 +1,3 @@
 ---
-# Install dns-nas-utils.deb.
-# http://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
-
-- name: Check if dns-nas-utils is installed
-  command: dpkg-query -W dns-nas-utils
-  register: dns_nas_utils_check_deb
-  failed_when: dns_nas_utils_check_deb.rc > 1
-  changed_when: dns_nas_utils_check_deb.rc == 1
-  
-- name: Download dns-nas-utils
-  get_url: 
-    url="https://github.com/lentinj/dns-nas-utils/blob/master/dns-nas-utils.deb?raw=true"
-    dest="/tmp/dns-nas-utils.deb"
-  when: dns_nas_utils_check_deb.rc == 1  
-
-- name: Install dns-nas-utils
-  apt: deb="/tmp/dns-nas-utils.deb"
-  sudo: true
-  when: dns_nas_utils_check_deb.rc == 1
+- include: ca-certificates.yml
+- include: dns-nas-utils.yml

@@ -27,3 +27,7 @@ https://people.debian.org/~aurel32/qemu/armel/
 http://jamie.lentin.co.uk/devices/dlink-dns325/
 http://docs.ansible.com/ansible/intro_getting_started.html#your-first-commands
 https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps
+
+## TODO
+- enable fan // echo 2000 > /sys/class/hwmon/hwmon?/fan1_target
+- turn off disks after period of inactivitiy
