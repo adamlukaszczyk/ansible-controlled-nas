@@ -31,7 +31,7 @@ Vagrant.configure(2) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+  config.vm.network "public_network"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -65,10 +65,16 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
+    #sudo apt-get update
+    
+    # Ansible
     sudo apt-get install -y ansible
+    sudo cp /vagrant/ansible/hosts /etc/ansible/hosts
+    
     sudo apt-get install -y vagrant
-	sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
-	vagrant plugin install vagrant-libvirt
+    sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
+    vagrant plugin install vagrant-libvirt
+    
   SHELL
+  
 end
