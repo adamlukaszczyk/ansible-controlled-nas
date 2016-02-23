@@ -73,8 +73,17 @@ Vagrant.configure(2) do |config|
     
     # QEmu for ARM VM
     sudo apt-get install -y libxslt-dev libxml2-dev libvirt-dev zlib1g-dev
-    cd /vagrant/vm-boxes; 
-    sudo qemu-system-arm -M versatilepb -kernel vmlinuz-3.2.0-4-versatile -initrd initrd.img-3.2.0-4-versatile -hda debian_wheezy_armel_standard.qcow2 -append "root=/dev/sda1" -daemonize -display none -redir tcp:5555::22
+    
+    # Downloading ARM boxes with Debian Wheezy
+    echo "Downloading ARM boxes with Debian Wheezy"
+    [ -d /var/vm-boxes ] || mkdir /var/vm-boxes
+    cd /var/vm-boxes
+    [ -f ./debian_wheezy_armel_standard.qcow2 ] || wget https://people.debian.org/~aurel32/qemu/armel/debian_wheezy_armel_standard.qcow2
+    [ -f ./initrd.img-3.2.0-4-versatile ] || wget https://people.debian.org/~aurel32/qemu/armel/initrd.img-3.2.0-4-versatile
+    [ -f ./vmlinuz-3.2.0-4-versatile ] || wget https://people.debian.org/~aurel32/qemu/armel/vmlinuz-3.2.0-4-versatile
+    sudo cp /vagrant/qemu-service/qemu-service /etc/init.d/qemu-service
+    sudo /etc/init.d/qemu-service restart
+    sudo update-rc.d qemu-service defaults
   SHELL
   
 end

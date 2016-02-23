@@ -28,6 +28,7 @@ https://people.debian.org/~aurel32/qemu/armel/
 - http://docs.ansible.com/ansible/intro_getting_started.html#your-first-commands
 - https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps
 - https://people.debian.org/~aurel32/qemu/armel/
+- https://github.com/fhd/init-script-template
 
 ## TODO
 - enable fan // echo 2000 > /sys/class/hwmon/hwmon?/fan1_target
