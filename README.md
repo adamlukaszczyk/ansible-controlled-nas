@@ -29,6 +29,7 @@ https://people.debian.org/~aurel32/qemu/armel/
 - https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps
 - https://people.debian.org/~aurel32/qemu/armel/
 - https://github.com/fhd/init-script-template
+- https://wiki.debian.org/QEMU#QEMU_networking_with_VDE
 
 ## TODO
 - enable fan // echo 2000 > /sys/class/hwmon/hwmon?/fan1_target
