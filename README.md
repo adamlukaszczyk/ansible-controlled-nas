@@ -1,7 +1,6 @@
 # ansible-controlled-nas
 
 Ansible and ARM virtualization for testing environment insite one VirtualBox
-https://github.com/pradels/vagrant-libvirt
 
 Debian ARM images:
 https://people.debian.org/~aurel32/qemu/armel/
@@ -34,3 +33,4 @@ https://people.debian.org/~aurel32/qemu/armel/
 ## TODO
 - enable fan // echo 2000 > /sys/class/hwmon/hwmon?/fan1_target
 - turn off disks after period of inactivitiy
+- copy vagrant ssh pub key to ARM VM

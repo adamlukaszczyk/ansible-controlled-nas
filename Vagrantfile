@@ -1,102 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
+# All Vagrant configuration is done below. 
 Vagrant.configure(2) do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "puppetlabs/debian-8.2-64-nocm"
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
-
   # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
   config.vm.network "public_network"
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
-
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
-
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
-    
-    # Ansible
-    sudo apt-get install -y ansible
-    sudo cp /vagrant/ansible/hosts /etc/ansible/hosts
-    
-    # QEmu for ARM VM
-    sudo apt-get install -y qemu bridge-utils
-    
-    # Setup DHCP server for ARM VM
-    sudo apt-get install -y dnsmasq vde2
-    sudo cp /vagrant/qemu-service/dnsmasq.conf /etc/dnsmasq.conf
-    sudo cp /vagrant/qemu-service/network-interface /etc/network/interfaces.d/mytap
-    sudo ifup mytap
-    sudo /etc/init.d/dnsmasq restart
-    
-    # Downloading ARM boxes with Debian Wheezy
-    echo "Downloading ARM boxes with Debian Wheezy"
-    [ -d /var/vm-boxes ] || mkdir /var/vm-boxes
-    cd /var/vm-boxes
-    [ -f ./debian_wheezy_armel_standard.qcow2 ] || wget https://people.debian.org/~aurel32/qemu/armel/debian_wheezy_armel_standard.qcow2
-    [ -f ./initrd.img-3.2.0-4-versatile ] || wget https://people.debian.org/~aurel32/qemu/armel/initrd.img-3.2.0-4-versatile
-    [ -f ./vmlinuz-3.2.0-4-versatile ] || wget https://people.debian.org/~aurel32/qemu/armel/vmlinuz-3.2.0-4-versatile
-    
-    # Setting up service for ARM VM
-    sudo cp /vagrant/qemu-service/startqemu.sh /var/vm-boxes/startqemu.sh
-    sudo cp /vagrant/qemu-service/qemu-service /etc/init.d/qemu-service
-    sudo chmod 744 /var/vm-boxes/startqemu.sh
-    sudo /etc/init.d/qemu-service restart
-    sudo update-rc.d qemu-service defaults
-  SHELL
+  # Enable provisioning with a shell script.
+  config.vm.provision "shell", path: "provision.sh"
   
 end
-
-#  ssh -p5555 root@127.0.0.1
