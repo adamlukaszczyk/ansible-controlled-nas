@@ -4,13 +4,15 @@
 # All Vagrant configuration is done below. 
 Vagrant.configure(2) do |config|
 
+  config.ssh.forward_agent = true
+
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "puppetlabs/debian-8.2-64-nocm"
 
-  # Create a public network, which generally matched to bridged network.
-  config.vm.network "public_network"
-
+  # Create a private network.
+  config.vm.network "private_network", ip: "192.168.50.2"
+    
   # Enable provisioning with a shell script.
   config.vm.provision "shell", path: "provision.sh"
   

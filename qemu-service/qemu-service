@@ -38,7 +38,10 @@ case "$1" in
         else
             sudo -u "$user" $cmd >> "$stdout_log" 2>> "$stderr_log" &
         fi
-        echo $! > "$pid_file"
+        # Qemu with -pidfile param will create pidfile for us
+        #echo $! > "$pid_file"
+        # Giving some time to create pid file by qemu
+        sleep 1
         if ! is_running; then
             echo "Unable to start, see $stdout_log and $stderr_log"
             exit 1

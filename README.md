@@ -5,22 +5,37 @@ Ansible and ARM virtualization for testing environment insite one VirtualBox
 Debian ARM images:
 https://people.debian.org/~aurel32/qemu/armel/
 
+Vagrant box users:
+- User `root` Password `puppet`
+- User `vagrant` Password `vagrant`
+
+ARM VM ip: `10.0.3.2`
+ARM VM users:
+- User `root` Password `root`
+- User `user` Password `user`
+
 ## Setup steps
 
-0. Clone this project; Make sure you have vagrant installed on your host.
+1. Clone this project; Make sure you have vagrant installed on your host.
 
-0. Setup your host name / ip address to you NAS in Ansible's hosts config file `ansible/hosts`
+0. Setup your host name / ip address to your NAS in Ansible's hosts config file `ansible/hosts`.
+
+0. First time vagrant run:
+    > `$ vagrant up`
+
+0. Go into the Vagrant
+    > `$ vagrant ssh`
 
 0. Add your public SSH key to `authorized_keys` on your NAS
 
-1. First time vagrant run:
-> `$ vagrant up`
+0. Copy SSH id to the ARM VM (password: `root`)
+    > `vagrant@localhost$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.3.2`
 
-2. Go into the Vagrant
-> `$ vagrant ssh`
 
-3. Run Ansible to install the packages on your virtual NAS
-> `ansible-playbook site.yml -u [user_name] -vvv --ask-sudo-pass`
+## Running Ansible
+1. Run Ansible to install the packages on your virtual NAS
+    > `vagrant@localhost$ ansible-playbook site.yml --ask-sudo-pass`
+
 
 ## Usefull links
 - http://jamie.lentin.co.uk/devices/dlink-dns325/
@@ -33,4 +48,3 @@ https://people.debian.org/~aurel32/qemu/armel/
 ## TODO
 - enable fan // echo 2000 > /sys/class/hwmon/hwmon?/fan1_target
 - turn off disks after period of inactivitiy
-- copy vagrant ssh pub key to ARM VM

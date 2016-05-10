@@ -1,15 +1,28 @@
 ---
 # This playbook deploys the whole application stack in this site.  
 
-  - hosts: live
-    sudo: yes
+  - hosts: stage
+    user: root
     gather_facts: no
     pre_tasks:
       
-      - raw: sudo apt-get install -y python-simplejson 
+      - raw: apt-get install -y python-simplejson 
         register: out
       - debug: var=out.stdout_lines
       
     roles:
     
       - nas
+      
+  - hosts: live
+    sudo: yes
+    gather_facts: no
+    pre_tasks:
+      
+      - raw: apt-get install -y python-simplejson 
+        register: out
+      - debug: var=out.stdout_lines
+      
+    roles:
+    
+      - nas      

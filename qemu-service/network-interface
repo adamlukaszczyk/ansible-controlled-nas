@@ -1,5 +1,23 @@
-auto mytap
-iface mytap inet static
-    address 10.0.3.1
-    netmask 255.255.255.0
-    vde2-switch -t mytap
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+iface eth0 inet manual
+
+# Bridge to the ARM VM
+auto br0
+iface br0 inet dhcp
+  pre-up ip tuntap add dev tap0 mode tap user root
+  pre-up ip link set tap0 up
+  bridge_ports eth0 tap0
+  bridge_stp off
+  bridge_maxwait 0
+  bridge_fd      0
+  post-down ip link set tap0 down
+  post-down ip tuntap del dev tap0 mode tap
