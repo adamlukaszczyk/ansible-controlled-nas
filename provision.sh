@@ -11,7 +11,7 @@ sudo cp /vagrant/ansible/hosts /etc/ansible/hosts
 sudo apt-get install -y qemu bridge-utils
 
 # Setup DHCP server for ARM VM
-sudo cp /vagrant/qemu-service/network-interface /etc/network/interfaces
+sudo cp /vagrant/qemu-service/network-interface /etc/network/interfaces.d/br0
 sudo /etc/init.d/networking restart
 
 # Downloading ARM boxes with Debian Wheezy

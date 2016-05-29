@@ -10,9 +10,9 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "puppetlabs/debian-8.2-64-nocm"
 
-  # Create a private network.
-  config.vm.network "private_network", ip: "192.168.50.2"
-    
+  # Create a public network.    
+  config.vm.network "public_network"
+  
   # Enable provisioning with a shell script.
   config.vm.provision "shell", path: "provision.sh"
   
