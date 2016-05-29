@@ -6,17 +6,17 @@ Debian ARM images:
 https://people.debian.org/~aurel32/qemu/armel/
 
 Vagrant box users:
-- User `root` Password `puppet`
-- User `vagrant` Password `vagrant`
+- `root:puppet`
+- `vagrant:vagrant`
 
-ARM VM ip: `10.0.3.2`
+ARM VM ip: `10.0.2.16`
 ARM VM users:
-- User `root` Password `root`
-- User `user` Password `user`
+- `root:root`
+- `user:user`
 
 ## Setup steps
 
-1. Clone this project; Make sure you have vagrant installed on your host.
+0. Clone this project; Make sure you have vagrant installed on your host.
 
 0. Setup your host name / ip address to your NAS in Ansible's hosts config file `ansible/hosts`.
 
@@ -29,12 +29,12 @@ ARM VM users:
 0. Add your public SSH key to `authorized_keys` on your NAS
 
 0. Copy SSH id to the ARM VM (password: `root`)
-    > `vagrant@localhost$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.3.2`
+    > `vagrant@localhost$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@10.0.2.16`
 
 
 ## Running Ansible
 1. Run Ansible to install the packages on your virtual NAS
-    > `vagrant@localhost$ ansible-playbook site.yml --ask-sudo-pass`
+    > `vagrant@localhost$ ansible-playbook /vagrant/ansible/site.yml --limit=stage `
 
 
 ## Usefull links

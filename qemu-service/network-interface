@@ -7,5 +7,6 @@ iface br0 inet dhcp
   bridge_stp off
   bridge_maxwait 0
   bridge_fd      0
+  pre-down service qemu-service stop
   post-down ip link set tap0 down
   post-down ip tuntap del dev tap0 mode tap
