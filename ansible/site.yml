@@ -13,7 +13,14 @@
     roles:
     
       - nas
-      
+
+      - common
+      - nginx
+#      - couchpotato
+      - plex
+#      - plexpy
+#      - sonarr
+#      - transmission
   - hosts: live
     sudo: yes
     gather_facts: no

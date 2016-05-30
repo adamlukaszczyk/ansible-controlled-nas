@@ -1,0 +1,3 @@
+[submodule "ansible/roles-external/mediabox"]
+	path = ansible/roles-external/mediabox
+	url = git@github.com:adamlukaszczyk/mediabox.git

@@ -2,5 +2,5 @@
 # Install common SSL certificates to make possible downloading files over HTTPS
 
 - name: Install ca-certificates
-  apt: name=ca-certificates state=present
+  apt: name=ca-certificates state=present update_cache=yes
   sudo: true
