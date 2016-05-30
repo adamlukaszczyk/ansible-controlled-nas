@@ -14,6 +14,6 @@ Vagrant.configure(2) do |config|
   config.vm.network "public_network"
   
   # Enable provisioning with a shell script.
-  config.vm.provision "shell", path: "provision.sh"
+  config.vm.provision "shell", path: "vagrant/provision.sh"
   
 end
